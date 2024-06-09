@@ -18,13 +18,8 @@ rm -f chrome_extension.zip
 
 # Install dependencies
 echo 'Install dependencies'
-yarn build
-
-# Copy generated build to distrubution folder
-echo 'Copy generated build to distrubution folder'
-mkdir -p dist
-cp -r build/* dist
+yarn build:ext
 
 # Zip the distribution folder
 echo 'Zip the extension'
-cd dist/ && zip -r ../chrome_extension.zip * -x "*.DS_Store" && cd ..
+cd dist/ && zip -r ../chrome_extension.zip * -x "*.DS_Store" "web_manifest.json" "screenshots/*" "images/*" "robots.txt" "base.manifest.json" "chrome.manifest.json" "firefox.manifest.json" && cd ..

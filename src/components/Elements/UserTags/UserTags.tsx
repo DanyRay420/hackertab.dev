@@ -1,24 +1,20 @@
-import React from 'react'
 import { TiPlus } from 'react-icons/ti'
+import { Link } from 'react-router-dom'
 import { useUserPreferences } from 'src/stores/preferences'
 
-type UserTagsProps = {
-  onAddClicked: () => void
-}
-
-export const UserTags = ({ onAddClicked }: UserTagsProps) => {
+export const UserTags = () => {
   const { userSelectedTags } = useUserPreferences()
 
   return (
-    <nav className="tags">
+    <div className="tags">
       {userSelectedTags.map((tag, index) => (
         <span key={index} className="tag">
           {tag.value}
         </span>
       ))}
-      <span className="tag tagHoverable" onClick={onAddClicked}>
+      <Link to="/settings/topics" className="tag tagHoverable" aria-label="Open settings">
         <TiPlus className="tagIcon" />
-      </span>
-    </nav>
+      </Link>
+    </div>
   )
 }

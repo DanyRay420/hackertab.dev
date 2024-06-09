@@ -1,0 +1,205 @@
+/**
+Modal
+**/
+
+.Modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  background-color: var(--card-background-color);
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00000052;
+  z-index: 3;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-background-color);
+  backdrop-filter: blur(2px);
+}
+
+.settingTitle {
+  width: 300px;
+  margin: 0;
+  margin-right: 8px;
+  align-self: flex-start;
+  color: var(--primary-text-color);
+}
+.settingRow {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.settingRow:not(:last-child) {
+  border-bottom: 1px solid var(--card-content-divider);
+}
+
+.settingContent .form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.settingContent input[type='text'] {
+  flex: 1;
+  background-color: var(--settings-input-background-color);
+  border: 1px solid var(--settings-input-border-color);
+  border-radius: 50px;
+  padding: 6px 18px;
+  color: var(--settings-input-text-color);
+  font-size: 14px;
+}
+
+.settingContent input[type='text']::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--settings-input-placeholder-color);
+  opacity: 1;
+  font-size: 14px;
+}
+
+.settingContent input[type='text']:focus {
+  border-color: var(--settings-input-border-focus-color);
+}
+
+.settingContent button {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  background-color: none;
+  border: none;
+  border-radius: 50px;
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+.settingContent button:hover {
+  opacity: 0.9;
+}
+.rssButton {
+  background-color: #ee802f;
+  color: white;
+}
+.rssButton:hover {
+  opacity: 0.9;
+}
+.settingContent {
+  width: 100%;
+  flex: 1;
+}
+.settingHint {
+  font-size: 12px;
+  margin-top: 12px;
+}
+.settingHint a {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--primary-text-color);
+}
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.modalTitle {
+  margin: 0;
+  padding: 0;
+  color: var(--primary-text-color);
+}
+.modalCloseBtn {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 50%;
+  border: none;
+  color: var(--primary-text-color);
+  cursor: pointer;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 40px;
+}
+.modalCloseBtn:hover {
+  opacity: 0.7;
+}
+
+/**
+Select styles
+**/
+.hackertab__control {
+  background-color: var(--card-background-color) !important;
+  border-color: var(--tag-border-color) !important;
+}
+.hackertab__indicator-separator {
+  background-color: var(--tag-secondary-color) !important;
+}
+.hackertab__indicator {
+  color: var(--tag-secondary-color) !important;
+}
+.hackertab__multi-value {
+  background-color: var(--tag-background-color) !important;
+  border-color: var(--tag-background-color) !important;
+  border-radius: 20px !important;
+}
+.hackertab__multi-value__label {
+  color: var(--tag-text-color) !important;
+}
+.hackertab__menu {
+  background-color: var(--card-background-color) !important;
+}
+.hackertab__option {
+  color: var(--tag-input-background) !important;
+  background-color: var(--card-background-color) !important;
+}
+.hackertab__single-value {
+  color: var(--primary-text-color) !important;
+}
+
+.hackertab__option--is-focused {
+  background: var(--tag-background-color) !important;
+  color: var(--tag-text-color) !important;
+}
+.hackertab__multi-value__remove {
+  border-radius: 20px !important;
+  color: var(--tag-secondary-color) !important;
+}
+
+@media (max-width: 768px) {
+  .Modal {
+    left: 0;
+    top: 0;
+    margin: 0;
+    height: 100vh;
+    max-height: 100vh;
+    transform: translate(0, 0);
+    border-radius: 0;
+    position: relative;
+    box-shadow: none;
+    width: auto;
+  }
+  .settingContent {
+    margin-top: 6px;
+  }
+  .settingRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

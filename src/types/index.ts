@@ -3,6 +3,9 @@ import { Tag } from 'src/features/remoteConfig'
 export type SearchEngineType = {
   url: string
   label: string
+  logo?: string
+  className?: string
+  default?: boolean
 }
 
 export type SelectedCard = {
@@ -28,6 +31,8 @@ export type UserPreferences = {
 export type SearchEngine = {
   url: string
   label: string
+  logo: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
+  className?: string
 }
 
 export type Theme = 'dark' | 'light'
@@ -79,11 +84,12 @@ export type SupportedCardType = {
   value: string
   analyticsTag: string
   label: string
-  link: string
+  link?: string
   type: 'rss' | 'supported'
   component?: React.FunctionComponent<CardPropsType>
   feedUrl?: string
   icon?: React.ReactNode | string
+  badge?: string
 }
 
 export type CardPropsType = {
@@ -107,9 +113,13 @@ export type Option = {
   label: string
   value: string
   icon?: React.ReactNode
+  removeable?: boolean
 }
 
-export type DNDDuration = {
-  value: number
-  countdown: number
-} | "always" | "never"
+export type DNDDuration =
+  | {
+      value: number
+      countdown: number
+    }
+  | 'always'
+  | 'never'

@@ -14,17 +14,18 @@ export function CustomRssCard({ meta, withAds }: CardPropsType) {
 
   const HeaderTitle = () => {
     return (
-      <div style={{ display: 'inline-block', margin: 0, padding: 0 }}>
+      <>
         <p className="maxTitle"> {meta.label} </p>
-      </div>
+      </>
     )
   }
 
   return (
     <Card
       card={{ ...meta, icon: <CardIcon url={meta.icon as string} /> }}
-      titleComponent={<HeaderTitle />}>
-      <ListComponent items={data} isLoading={isLoading} renderItem={renderItem} withAds={withAds} />
+      titleComponent={<HeaderTitle />}
+      withAds={withAds}>
+      <ListComponent items={data} isLoading={isLoading} renderItem={renderItem} />
     </Card>
   )
 }

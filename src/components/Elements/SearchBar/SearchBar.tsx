@@ -1,21 +1,14 @@
 import React, { useEffect, useRef } from 'react'
-import { GoSearch } from 'react-icons/go'
-import { SUPPORTED_SEARCH_ENGINES } from 'src/config'
+import { IoSearchCircleSharp } from 'react-icons/io5'
 import { trackSearchEngineUse } from 'src/lib/analytics'
 import { useUserPreferences } from 'src/stores/preferences'
-import { SearchEngine } from 'src/types'
 
-type SearchBarProps = {
-  withLogo?: boolean
-}
-
-export const SearchBar = ({ withLogo }: SearchBarProps) => {
-  const { searchEngine } = useUserPreferences()
+export const SearchBar = () => {
+  const { searchEngine, searchEngines } = useUserPreferences()
 
   const keywordsInputRef = useRef<HTMLInputElement | null>(null)
-  const usedSearchEngine: SearchEngine =
-    SUPPORTED_SEARCH_ENGINES.find((engine) => engine.label === searchEngine) ||
-    SUPPORTED_SEARCH_ENGINES[0]
+  const usedSearchEngine =
+    searchEngines.find((engine) => engine.label === searchEngine) || searchEngines[0]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -33,7 +26,14 @@ export const SearchBar = ({ withLogo }: SearchBarProps) => {
 
   return (
     <form className="searchBar" onSubmit={handleSubmit}>
-      <GoSearch className="searchBarIcon" size={20} />
+      {usedSearchEngine.default === false ? (
+        <IoSearchCircleSharp className="searchBarIcon" />
+      ) : (
+        <img
+          className={'searchBarIcon'}
+          src={`/searchengine_logos/${usedSearchEngine.label.toLowerCase()}_logo.svg`}
+        />
+      )}
       <input
         ref={keywordsInputRef}
         type="text"

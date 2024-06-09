@@ -1,22 +1,19 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BsRssFill } from 'react-icons/bs'
-import { SUPPORTED_CARDS } from 'src/config'
+import { useNavigate } from 'react-router-dom'
+import { SUPPORTED_CARDS } from 'src/config/supportedCards'
 import { useUserPreferences } from 'src/stores/preferences'
 import { SelectedCard } from 'src/types'
 
 type BottomNavigationProps = {
   selectedCard: SelectedCard
   setSelectedCard: (card: SelectedCard) => void
-  setShowSettings: (value: boolean | ((prevVar: boolean) => boolean)) => void
 }
 
-export const BottomNavigation = ({
-  selectedCard,
-  setSelectedCard,
-  setShowSettings,
-}: BottomNavigationProps) => {
+export const BottomNavigation = ({ selectedCard, setSelectedCard }: BottomNavigationProps) => {
   const { cards, userCustomCards } = useUserPreferences()
   const AVAILABLE_CARDS = [...SUPPORTED_CARDS, ...userCustomCards]
+  const navigate = useNavigate()
 
   return (
     <div className="bottomNavigation">
@@ -38,8 +35,11 @@ export const BottomNavigation = ({
       })}
       {
         <button
+          aria-label="Open settings"
           className={'navigationItem '}
-          onClick={() => setShowSettings((prev: boolean) => !prev)}>
+          onClick={() => {
+            navigate('/settings/general')
+          }}>
           {<AiOutlineMenu />}
         </button>
       }

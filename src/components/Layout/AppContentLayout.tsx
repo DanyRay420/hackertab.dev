@@ -6,31 +6,23 @@ import { ScrollCardsNavigator } from './'
 import { DesktopCards } from './DesktopCards'
 import { MobileCards } from './MobileCards'
 
-export const AppContentLayout = ({
-  setShowSettings,
-}: {
-  setShowSettings: (value: boolean | ((prevVar: boolean) => boolean)) => void
-}) => {
+export const AppContentLayout = () => {
   const { cards, userCustomCards } = useUserPreferences()
   const [selectedCard, setSelectedCard] = useState(cards[0])
 
   return (
-    <section>
+    <>
       <main className="AppContent">
         <ScrollCardsNavigator />
         {isDesktop ? (
           <DesktopCards cards={cards} userCustomCards={userCustomCards} />
         ) : (
-          <div className="HorizontalScroll">
+          <div className="Cards HorizontalScroll">
             <MobileCards selectedCard={selectedCard} />
           </div>
         )}
       </main>
-      <BottomNavigation
-        selectedCard={selectedCard}
-        setSelectedCard={setSelectedCard}
-        setShowSettings={setShowSettings}
-      />
-    </section>
+      <BottomNavigation selectedCard={selectedCard} setSelectedCard={setSelectedCard} />
+    </>
   )
 }
